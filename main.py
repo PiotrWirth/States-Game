@@ -15,7 +15,7 @@ data = pandas.read_csv("50_states.csv")
 correct_name = 0
 all_states = data.state.to_list()
 guessed_states = []
-not_guessed = []
+
 
 while correct_name < 50:
     answer_state = screen.textinput(
@@ -32,8 +32,8 @@ while correct_name < 50:
             pointer.write(f"{state_name}")
             correct_name += 1
 
-for state in all_states:
-    if state not in guessed_states:
-        not_guessed.append(state)
+
+not_guessed = [state for state in all_states if state not in guessed_states]
+
 
 pandas.DataFrame(not_guessed).to_csv("missed.csv")
